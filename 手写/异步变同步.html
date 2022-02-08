@@ -20,6 +20,7 @@
     //     }, 1000);
     // }
 
+
     // 1.实现思路：
     // promise.then需要根据promise的状态做出回调。延迟1秒更改promise的状态，自身调用
     // function delay() {
@@ -68,7 +69,24 @@
     // 3.实现思路
     // async await promise 搭配使用
 
-    function _console(data) {
+    // function _console(data) {
+    //     return new Promise(resolve => {
+    //         setTimeout(() => {
+    //             console.log(data)
+    //             resolve()
+    //         }, 1000);
+    //     })
+    // }
+    // async function delay() {
+    //     for (let i = 0; i < 5; i++) {
+    //         await _console(i)
+    //     }
+    // }
+    // delay()
+
+    // 4.实现思路:yield处暂停
+    // 生成器函数 * yield next promise 搭配使用
+    function delay(data) {
         return new Promise(resolve => {
             setTimeout(() => {
                 console.log(data)
@@ -76,17 +94,52 @@
             }, 1000);
         })
     }
-    async function delay() {
+
+    function* gen() {
         for (let i = 0; i < 5; i++) {
-            await _console(i)
+            yield delay(i)
         }
     }
-    delay()
+    function co(gen) {
+        const g = gen() //仅获取gen的一个实例，里面的for函数并未开始执行
+        next()          //开始执行第一个内置的next
+        function next() {
+            const { value, done } = g.next()    //接收到执行结果 yield后面的第一个语句值与value对应
+            if (done) return
+            value.then(data => next())  //value是promise，状态改变后继续向下执行
+        }
+
+    }
+    co(gen)
 
 
 
 
 
+
+
+
+
+/* ------------------------------------------------------------------  */
+
+    // 生成器函数的简单使用 第一次使用next时会从第一个yield执行到第二个yield处暂停，并且第一个yield后面的第一个语句是value.紧跟在第一个yield后面的是一个执行语句，则会先执行，返回值为undefined
+    // function* gen(score = 100) {
+    //     let total_subtract = 0;
+    //     total_subtract += 10
+    //     yield score - total_subtract
+    //     total_subtract += 20
+    //     // console.log("==")
+    //     yield score - total_subtract;
+    //     total_subtract += 30
+    //     yield score - total_subtract
+    //     throw Error("是不过3")
+    // }
+    // const run = gen(100)
+    // console.log("1:", run.next())
+    // console.log("2:", run.next())
+    // console.log("3:", run.next())
+    // // console.log("4:", run.next())
+    // console.log("---")
 
 
 </script>
