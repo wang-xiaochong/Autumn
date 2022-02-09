@@ -1,0 +1,6 @@
+CSDN网址：https://blog.csdn.net/weixin_51232434/article/details/122839649?spm=1001.2014.3001.5502
+
+1.发送npm install命令
+2.npm 向 registry 查询模块压缩包的网址
+3.下载压缩包到~./npm目录或%AppData%/npm-cache目录下
+4.解压压缩包到当前项目的node_modubles目录
