@@ -42,7 +42,7 @@
             }
 
             for (let key in obj) {
-                // 判断原型 是否为该对象特有的
+                // 保证key不是原型的属性
                 if (obj.hasOwnProperty(key)) {
                     result[key] = deepClone(obj[key])
                 }
