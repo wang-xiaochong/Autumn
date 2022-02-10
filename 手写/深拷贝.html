@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深拷贝</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let obj1 = {
+        name: "obj1",
+        age: 20,
+        city: "beijing",
+        arr: ['a', 'b', 'c'],
+        obj: {
+            name: 'obj',
+            age: 21
+        }
+    }
+
+    // 引用类型 浅拷贝 改变obj2时obj1也改变
+    // let obj2 = obj1
+    // obj2.name = "obj2"
+    // console.log(obj1)
+
+    // 深拷贝 改变obj2时不改变obj1
+    function deepClone(obj) {
+        if (typeof (obj) != "object" || typeof (obj) == null) {
+            return obj
+        } else {
+            let result
+            if (obj instanceof Array) {
+                // console.log(obj)
+                result = []
+            } else {
+                result = {}
+            }
+
+            for (let key in obj) {
+                // 判断原型 是否为该对象特有的
+                if (obj.hasOwnProperty(key)) {
+                    result[key] = deepClone(obj[key])
+                }
+            }
+            return result
+        }
+    }
+
+
+    let obj2 = deepClone(obj1)
+    obj2.name = "obj2"
+    console.log(obj1)
+
+    // // 数组的话key值是坐标 可以用arr[key]来获取值
+    // let arr = [1,2,3]
+    // for(let key in arr) {
+    //     arr[key] = 0
+    // }
+    // console.log(arr)
+    // // 对象的话key值是对象的键，可以用obj[key]来获取值
+    // let obj = {name:"zhangsan",age:21}
+    // for(let key in obj){
+    //     obj[key] = "0"
+    // }
+    // console.log(obj)
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
