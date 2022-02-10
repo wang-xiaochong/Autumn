@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    class People {
+        constructor(name) {
+            this.name = name
+        }
+        eat() {
+            console.log(`${this.name} eat something`)
+        }
+    }
+    class Student extends People {
+        constructor(name, number) {
+            super(name)
+            this.number = number
+        }
+        sayHi() {
+            console.log(`姓名:${this.name} 学号:${this.number}`)
+        }
+    }
+    class Teacher extends People {
+        constructor(name, major) {
+            super(name)
+            this.major = major
+        }
+        teach() {
+            console.log(`${this.name} 教 ${this.major}`)
+        }
+    }
+
+    const s1 = new Student("夏洛特", 100)
+    const t1 = new Teacher("王老师", "语文")
+
+    // //学生实例
+    // console.log(s1.name, s1.number)
+    // s1.eat()
+    // s1.sayHi()
+    // //老师实例
+    // console.log(t1.name, t1.major)
+    // t1.eat()
+    // t1.teach()
+
+    // 原型链 隐式原型__proto__    显式原型prototype
+    // sayHi()存在于s1的__proto__ 和Student的prototype中
+    // Student.prototype.__proto__ === People.prototype 
+    // __proto__ 表示 上一层的 prototype
+    // instanceof 原理
+    // a instanceof b :: a的__proto__向上爬，b的prototype也一直向上爬 如果b最后的prototype === a最后的__prototype__则返回真，否则返回假
+    console.log(Student.prototype.__proto__)
+    console.log(People.prototype)
+    console.log(Student.prototype.__proto__ === People.prototype)
+
+
+    // ！！！重要提示！！！
+    /* class 是ES6语法规范，由ECMA委员会发布
+     * ECMA只规定语法规则，即代码的书写规范，不规定如何实现
+     * 以上实现方式都是V8引擎的实现方式，也是主流的
+     * V8引擎：解析JS
+     */
+
+
+
+
+</script>
+
+</html>
