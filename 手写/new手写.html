@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Dog(name) {
+        this.name = name
+        this.sex = "dog.sex"
+        this.height = "4"
+    }
+    Dog.prototype.bark = function () {
+        console.log(this.name + " 汪汪汪!!!")
+        // console.log(this.sex)
+    }
+    // let d1 = new Dog("小黑")
+    // d1.bark()
+
+
+
+    function _new(fn, ...args) {
+        // new返回的时一个对象 先声明一个空对象
+        let obj = { name: "obj.name", sex: "obj.sex", age: "5" }
+        // 将该对象应有的方法从显示原型中拿出来
+        obj.__proto__ = fn.prototype
+        // 将该对象应有的属性从声明的函数中拿出来 需要注意的时先改变了fn中的this指向，使其指向了obj 
+        /*
+            ！！！赋值过程：
+            1.先是obj自带的属性以及值 
+            2.fn中属性重复值进行覆盖,未重复进行添加  
+            3.携带的参数进行最后的赋值 赋值完成
+        */
+        fn.call(obj, ...args)
+        // console.log(obj)
+        return obj
+    }
+    let d2 = _new(Dog, "小黄")
+    d2.bark()
+
+</script>
+
+</html>
