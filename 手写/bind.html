@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bind</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    function fn1() {
+        console.log(this)
+        console.log(arguments)
+        return "this is fn1"
+    }
+    
+    // console.log(fn1())             //方法使用 window
+    // fn1.call({ x: 1 })                //对象使用 {x:1}
+    // let fn2 = fn1.bind({ x: 2 }, 10, 20)   //bind更改了fn1的this指向，但并不执行fn1，而是返回一个新的可执行函数
+    // console.log(fn2())
+
+    /*--------------手写bind函数-----------------*/
+
+    Function.prototype._bind = function () {
+        
+
+        // // 获取原来的this指向
+        // const self = this
+        // // 接收新的this环境
+        // let newSelf = arguments[0]
+        // //参数接收过来
+        // let args = []
+        // for (let i = 1; i < arguments.length; i++) {
+        //     args.push(arguments[i])
+        // }
+
+
+         // 获取原来的this指向
+         const self = this
+        //参数接收过来
+        let args = Array.prototype.slice.call(arguments)
+        // 接收新的this环境 shift会将数组中的第一项元素返回并且在这个数组中永久删除
+        let newSelf = args.shift()
+
+        return function () {
+            // apply会执行self self指的是fn1 执行后改变this指向 加return返回self中return的结果
+            return self.apply(newSelf, args)
+
+        }
+    }
+
+
+    let fn3 = fn1._bind({ x: 2 }, 10, 20)
+    console.log(fn3())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
