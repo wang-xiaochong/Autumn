@@ -10,7 +10,7 @@
 
     var jQuery = function (selector) {
 
-        // 实例化init方法
+        // 实例化init 得到一个init对象
         return new jQuery.fn.init(selector)
 
         // init{
@@ -30,31 +30,69 @@
     }
 
     jQuery.fn = jQuery.prototype = {
+
         init: function (selector) {
             var dom = null
             if (typeof (selector) != 'string') {
                 // 获取到非字符串的元素 window 或 this
-                dom = [selector]
+                var ret = this
+                ret[0] = selector
+                // dom = [selector]
+                return ret
+
             } else {
                 //获取到元素
                 dom = document.querySelectorAll(selector)
+                //返回一个对象
                 return markAll(dom, this)
             }
-
         },
 
 
         css: function () {
+            // alert("css")
+            let arg = arguments
+            let length = arg.length
+            if (length == 1) {
+                // 获取
+                return this[0].style[arg[0]]
+            } else if (length == 2) {
+                //设置
+                // console.log(this)
+                this[0].style[arg[0]] = arg[1]
+                return this
+            } else {
+                console.log("css参数错误")
+            }
+            return this
 
         },
         html: function () {
-
+            // alert("html")
+            // console.log(this)
+            // this返回的是init
+            return this
+        },
+        first: function () {
+            return $(this[0])
+        },
+        last: function () {
+            return $(this[this.length - 1])
         },
         eq: function () {
+            let length = arguments.length
+            if (length > 1) {
+                console.log("eq参数错误")
+            } else {
+                return $(this[arguments[0] - 1])
+            }
 
         },
     }
 
+    // 添加方法到init原型中 使得jquery.fn jquery.prototype 中的方法在init中可以使用
+    jQuery.fn.init.prototype = jQuery.fn
+    // 挂载到全局
     window.jQuery = window.$ = jQuery
 })()
 
