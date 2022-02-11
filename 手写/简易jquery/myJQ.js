@@ -90,9 +90,38 @@
         },
     }
 
+    // 自定义插件
+    jQuery.prototype.dialog = function (info) {
+        alert(info)
+    }
+
+
+    // 扩展性
+    class jquery1 {
+        constructor(selector) {
+            // console.log(selector)
+        }
+        sayHi() {
+            alert("jquery1")
+        }
+    }
+
+    class jquery2 extends jquery1 {
+        constructor(selector) {
+            super(selector)
+        }
+        dialog() {
+            alert("jquer2")
+        }
+    }
+    let myjQuery = new jquery2()
+
+
+
     // 添加方法到init原型中 使得jquery.fn jquery.prototype 中的方法在init中可以使用
     jQuery.fn.init.prototype = jQuery.fn
     // 挂载到全局
     window.jQuery = window.$ = jQuery
+    window.myjQuery = window.$my = myjQuery
 })()
 
