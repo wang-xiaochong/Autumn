@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包应用</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    function createData() {
+        var data = {}   // 闭包应用 内部隐藏数据 从外界访问不到 只能根据内部提供的API进行访问
+        return {
+            set(key, value) {
+                data[key] = value
+            },
+            get(key) {
+                return data[key]
+            }
+        }
+    }
+
+    let c = createData()
+    c.set("a", 100)
+    console.log(c.data)         //undefined
+    console.log(c.get("a"))     //100
+</script>
+
+
+
+
+
+</html>
