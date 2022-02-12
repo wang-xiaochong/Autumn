@@ -65,12 +65,12 @@
         }
         elem.addEventListener(type, event => {
             const target = event.target
-            
+
             if (selector) {
                 // 代理绑定
                 if (target.matches(selector)) {
                     // 由具体被代理的触发的事件处理
-                    fn.call(null, event)
+                    fn.call(target, event)
                 } else {
                     // 由不是被代理的触发的事件处理
                     alert('从父元素中没被指定代理的内容')
@@ -86,17 +86,16 @@
 
     const btn1 = document.getElementById('btn1')
 
-    bindEvent(btn1, 'click', fn => {
+    bindEvent(btn1, 'click', function (fn) {
         console.log('button1 clicked')
     })
 
     const div1 = document.getElementById('div1')
-    bindEvent(div1, 'click', 'a', event => {
-        // console.log(this) //window
+    bindEvent(div1, 'click', 'a', function (event) {
+        console.log(this)
         event.preventDefault()
-        const target = event.target
-        alert(target.innerHTML)
-
+        // const target = event.target
+        alert(this.innerHTML)
     })
 
 
