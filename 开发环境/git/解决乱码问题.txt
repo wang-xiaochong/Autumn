@@ -1,0 +1,12 @@
+用户目录下创建 .bashrc 文件
+
+编辑内容：
+
+#用于git输出提交日志
+alias git-log='git log --pretty=oneline --all --graph --abbrev-commit'
+#用于输出当前目录所有文件及基本信息
+alias ll='ls -al'
+
+保存 
+
+打开gitbash 执行source ~/.bashrc
