@@ -1,0 +1,42 @@
+
+// 安装webpack
+npm install webpack webpack-cli --global
+
+// 安装npm包管理配置文件
+npm init -y
+
+// 本地安装(当前文件夹)
+npm install webpack webpack-cli --save-dev
+
+// 利用全局打包
+webpack
+
+// 利用本文件夹的打包
+npx webpack
+
+// 外部index.html手动引入
+<script src="./dist/bundle.js"></script>
+
+// 安装HtmlWebpackPlugin插件(本地开发环境)
+npm install html-webpack-plugin -D
+
+// webpack.config.js中引入插件并进行配置后，自动生成打包文件
+plugins
+
+// 实时进行打包，但是页面需要手动刷新
+npm webpack --watch 
+
+// 使用source map 精准定位代码行数
+devtool:"inline-source-map"
+
+// 实时打包翻译，并且浏览器检测文件改变后自动刷新页面
+npm install webpack-dev-server -D
+//webpack.config.js中进行配置后启动  删除dist文件后依然可以运行 该启动是放在了内存中
+npx webpack-dev-server
+
+
+
+
+
+
+
