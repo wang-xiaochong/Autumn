@@ -1,0 +1,16 @@
+
+
+//webpack 识别不了css文件 安装css-loader
+npm install css-loader -D
+//之后webpack.config.js中进行配置
+//仅这一个无法渲染 安装style-loader
+npm install style-loader -D
+
+//安装预处理 less-loader
+npm install less-loader less -D
+
+
+
+
+
+
