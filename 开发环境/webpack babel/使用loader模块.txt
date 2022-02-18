@@ -9,6 +9,13 @@ npm install style-loader -D
 //安装预处理 less-loader
 npm install less-loader less -D
 
+//安装插件将css样式单独抽离出来
+npm install mini-css-extract-plugin -D
+
+// 压缩抽离出来的css文件
+npm install css-minimizer-webpack-plugin -D
+
+
 
 
 
