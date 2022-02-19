@@ -21,6 +21,7 @@ document.body.appendChild(img2)
 const div = document.createElement('div')
 div.style.cssText = 'width:200px;height:200px;background:yellow'
 div.textContent = txt
+div.classList.add('block-hello')
 document.body.appendChild(div)
 
 const img3 = document.createElement('img')

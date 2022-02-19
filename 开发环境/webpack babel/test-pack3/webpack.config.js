@@ -21,8 +21,8 @@ module.exports = {
 
         assetModuleFilename: 'images/[contenthash][ext]' //自定义图片打包后图片的输出位置
     },
-    // mode: 'development', //开发环境
-    mode: 'production', //线上环境
+    mode: 'development', //开发环境
+    // mode: 'production', //线上环境
 
     devtool: 'inline-source-map', // 快速找到代码出现错误的位置
 
