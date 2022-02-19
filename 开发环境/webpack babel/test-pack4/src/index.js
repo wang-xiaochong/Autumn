@@ -37,8 +37,19 @@ span.innerHTML = '&#xe668'
 document.body.appendChild(span)
 
 import _ from 'lodash'
-console.log(_.join(['index','module','loaded'],' '))
+console.log(_.join(['index', 'module', 'loaded'], ' '))
 
 // 动态引入的lodash
 import './async-modules'
+
+// 点击按钮动态导入math
+const button = document.createElement('button')
+button.textContent = '点击我加载math模块'
+button.addEventListener('click', () => {
+    // 预获取 webpackPrefetch 网络空闲时加载  预加载 webpackPreload
+    import(/*webpackChunkName: 'math', webpackPrefetch: true*/'./math.js').then(({ add }) => {
+        console.log(add(4,5))
+    })
+})
+document.body.appendChild(button)
 

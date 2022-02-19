@@ -39,7 +39,7 @@ module.exports = {
     
     output: {
         // filename: 'bundle.js',  // 新生成的文件名称
-        filename: '[name].bundle.js',
+        filename: 'bundles/[name].bundle.js',
         path: path.resolve(__dirname, './dist'),    //新生成的打包文件位置 
         clean: true, //清理上一次打包生成的文件
 
