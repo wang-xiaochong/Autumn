@@ -1,0 +1,22 @@
+
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('./assets/font.ttf') format('truetype');
+}
+
+.iconfont{
+    font-family: 'iconfont';
+    font-size: 30px;
+}
+
+
+
+
+.hello{
+    color: blue;
+}
+
+.block-hello{  
+    background-image: url('./assets/06.svg') !important;
+}
