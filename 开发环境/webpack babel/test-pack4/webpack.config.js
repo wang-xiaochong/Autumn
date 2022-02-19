@@ -36,10 +36,11 @@ module.exports = {
     //     shared: 'lodash'
     // },
 
-    
+
     output: {
         // filename: 'bundle.js',  // 新生成的文件名称
-        filename: 'bundles/[name].bundle.js',
+        // filename: 'bundles/[name].bundle.js', // 多入口文件对应的多个输出文件
+        filename: 'bundles/[name].[contenthash].js', //浏览器缓存 修改内容后更新打包后文件名
         path: path.resolve(__dirname, './dist'),    //新生成的打包文件位置 
         clean: true, //清理上一次打包生成的文件
 
@@ -155,13 +156,19 @@ module.exports = {
 
         // 代码分离 压缩成更小的bundle时，公共部分抽离出来
         splitChunks: {
-            chunks: 'all'
+            // chunks: 'all'
+            // 缓存
+            cacheGroups: {
+                vendor: {
+                    // node_modules目录前后可能会有斜线 该目录下的包都打包成vendors 其他自己引用的模块不变
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
         }
 
     }
-
-
-
 
 }
 
