@@ -76,6 +76,19 @@ module.exports = {
                 }
             },
 
+            // babel 解析 ES6=>ES5
+            {
+                test: /\.js$/,
+                exclude: '/node_modules/', //全局的js不需要babel解析
+                use: {
+                    loader: 'babel-loader', // 应用babel对js解析
+                    options: {
+                        // presets: ['@babel/preset-env'], // babel预设  使用后出现了问题 暂时不使用 
+                        plugins: ['@babel/plugin-transform-runtime'] //gerrun需要时自动导包  单独使用好像没有降低版本
+                    }
+                }
+            },
+
 
             // 加载字体
             {

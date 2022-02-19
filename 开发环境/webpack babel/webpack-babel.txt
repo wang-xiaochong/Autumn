@@ -1,0 +1,16 @@
+
+
+使用原因：
+ES6如果在浏览器中解析发生错误，则会导致运行错误，因此需要来京ES6转化为低版本的ES5来保证其正常运行
+
+安装三个包
+babel-loader		webpack里面应用babel解析ES6的一个桥梁
+@babel/core		babel的核心代码
+@babel/preset-env		babel预设 一组插件的集合 每一个babel解析需要一个插件
+npm install babel-loader @babel/core @babel/preset-env -D
+
+安装 regeneratorRuntime 运行时需要的包
+npm install @babel/runtime -D
+安装包 会在 regeneratorRuntime 需要的地方，自动require打包
+npm install @babel/plugin-transform-runtime -D
+
