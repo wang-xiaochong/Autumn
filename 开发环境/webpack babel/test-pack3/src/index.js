@@ -8,6 +8,7 @@ import './style.css'
 import './style.less'
 
 
+
 hello()
 
 const img = document.createElement('img')
@@ -29,3 +30,8 @@ img3.src = imgsrc3
 document.body.appendChild(img3)
 
 document.body.classList.add('hello')
+
+const span = document.createElement('span')
+span.classList.add('iconfont')
+span.innerHTML = '&#xe668'
+document.body.appendChild(span)

@@ -1,3 +1,18 @@
+
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('./assets/font.ttf') format('truetype');
+}
+
+.iconfont{
+    font-family: 'iconfont';
+    font-size: 30px;
+}
+
+
+
+
 .hello{
     color: blue;
 }

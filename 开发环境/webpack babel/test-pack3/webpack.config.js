@@ -19,7 +19,7 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),    //新生成的打包文件位置 
         clean: true, //清理上一次打包生成的文件
 
-        assetModuleFilename: 'images/[contenthash][ext]' //自定义图片打包后图片的输出位置
+        assetModuleFilename: 'images/[contenthash][ext]' //自定义所有打包后图片的输出位置
     },
     mode: 'development', //开发环境
     // mode: 'production', //线上环境
@@ -64,7 +64,7 @@ module.exports = {
             },
             {
                 test: /\.txt$/,
-                type: 'asset/source'
+                type: 'asset/source'    //加载文档中的内容
             },
             {
                 test: /\.png$/,
@@ -73,6 +73,16 @@ module.exports = {
                     dataUrlCondition: {
                         maxSize: 4 * 1024 * 1024 //默认大小为8kb 该设置为4Mb 超过后dist会生成文件
                     }
+                }
+            },
+
+
+            // 加载字体
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[contenthash][ext]' //优先级高于上面的out
                 }
             },
 
