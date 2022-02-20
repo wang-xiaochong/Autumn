@@ -1,0 +1,6 @@
+
+
+npm install webpack webpack-cli -D
+npm install html-webpack-plugin -D
+npm install webpack-dev-server -D
+npm install babel-loader @babel/core @babel/preset-env -D
