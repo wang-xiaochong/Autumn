@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve -c ./config/webpack.config.js --env development",
+    "build": "webpack -c ./config/webpack.config.js --env production"
   },
   "keywords": [],
   "author": "",
@@ -22,8 +24,10 @@
     "less-loader": "^10.2.0",
     "mini-css-extract-plugin": "^2.5.3",
     "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.1",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "^5.8.0"
   }
 }

@@ -9,11 +9,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 引用mini-css-extract-plugin插件，将css样式抽离出来，源文件使用link引入 基于webpack5实现
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-// 引用css-minimizer-webpack-plugin插件，来将抽离出来的css样式进行压缩
-const CssMiniMizerPlugin = require('css-minimizer-webpack-plugin')
-
-// 压缩代码插件 因为单独压缩了css 所以需要该插件进行压缩打包后的代码
-const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
 
@@ -26,37 +21,13 @@ module.exports = {
         index2: './src/index2.js'
     },
 
-    // 重复引用的包单独打包出来
-    // entry: {
-    //     index: {
-    //         import: './src/index.js',
-    //         dependOn: 'shared'
-    //     },
-    //     index2: {
-    //         import: './src/index2.js',
-    //         dependOn: 'shared'
-    //     },
-    //     shared: 'lodash'
-    // },
-
 
     output: {
-        // filename: 'bundle.js',  // 新生成的文件名称
-        // filename: 'bundles/[name].bundle.js', // 多入口文件对应的多个输出文件
-        filename: 'bundles/[name].[contenthash].js', //浏览器缓存 修改内容后更新打包后文件名
-        path: path.resolve(__dirname, './dist'),    //新生成的打包文件位置 
+        path: path.resolve(__dirname, '../dist'),    //新生成的打包文件位置 
         clean: true, //清理上一次打包生成的文件
         assetModuleFilename: 'images/[contenthash][ext]', //自定义所有打包后图片的输出位置
-        publicPath: 'http://localhost:8080/'
     },
 
-
-
-
-    mode: 'development', //开发环境
-    // mode: 'production', //线上环境
-
-    devtool: 'inline-source-map', // 快速找到代码出现错误的位置
 
     plugins: [
         // 实例化  并进行配置 与外部index关联 并控制script标签位置
@@ -71,12 +42,6 @@ module.exports = {
 
         })
     ],
-
-
-    // 热启动
-    devServer: {
-        static: './dist'
-    },
 
     // 资源模块
     module: {
@@ -152,12 +117,7 @@ module.exports = {
 
     // 优化
     optimization: {
-        minimizer: [
-            // 实例化css压缩插件  并且需要将mode由development改为production
-            new CssMiniMizerPlugin(),
-            // 生产环境下 压缩JS代码 开发环境下不进行压缩
-            new TerserPlugin()
-        ],
+        
 
         // 代码分离 压缩成更小的bundle时，公共部分抽离出来
         splitChunks: {
