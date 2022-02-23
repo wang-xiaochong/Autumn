@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流</title>
+    <style>
+        #div1 {
+            border: 1px solid #ccc;
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1" draggable="true">可拖拽</div>
+
+</body>
+<script>
+    // 保持一定频率触发 无论用户操作多块
+
+    // const div1 = document.getElementById('div1')
+    // let timer = null
+    // div1.addEventListener('drag', function (e) {
+    //     if (timer) {
+    //         return
+    //     }
+    //     timer = setTimeout(() => {
+    //          // 打印xy位置
+    //         console.log(e.offsetX, e.offsetY)
+    //         timer = null
+    //     },100)
+    // });
+
+    // 封装节流
+    function throttle(fn,delay = 100) {
+        let timer = null
+        return function(){
+            if(timer){
+                return
+            }
+            timer = setTimeout(() => {
+                fn.apply(this,arguments)
+                // console.log(arguments)
+                timer = null
+            }, delay);
+        }
+    }
+
+    div1.addEventListener('drag',throttle((e)=>{
+        console.log(e.offsetX,e.offsetY)
+    },1000)) 
+
+    // div1.addEventListener('click',(event)=>{
+    //     console.log(event)
+
+    // })
+
+       
+
+
+
+</script>
+
+</html>
