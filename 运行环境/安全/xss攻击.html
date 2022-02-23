@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<!-- xss攻击就是黑客向正常网页中插入可执行脚本，当用户浏览或者提交内容时会触发，模拟的xss攻击都没有实现，应该是浏览器已经识别了并做了相关的防御措施 -->
+
+<body>
+    <h1>XSS攻击</h1>
+    <input id="input1">
+    <button id="button1">评论</button>
+    <button id="button2">显示</button>
+    <ul id="ul1"></ul>
+    <span id="span1">
+        <!-- <script>alert(1)</script> -->
+    </span>
+
+</body>
+
+
+<script>
+    let msgList = []
+
+    if (localStorage.getItem('msgList')) {
+        msgList = localStorage.getItem('msgList')
+        msgList = JSON.parse(msgList)
+    }
+
+    const input1 = document.getElementById('input1')
+    const button1 = document.getElementById('button1')
+    const span1 = document.getElementById('span1')
+
+    span1.innerHTML = '<script>' + 'alert(1)' + '<\/script>'
+    button1.addEventListener('click', function () {
+        msgList.push(input1.value)
+        localStorage.setItem('msgList', JSON.stringify(msgList))
+    })
+
+
+    button2.addEventListener('click', function () {
+        msgList = localStorage.getItem('msgList')
+        msgList = JSON.parse(msgList)
+        let length = msgList.length
+        for (let i = 0; i < length; i++) {
+            // console.log(msgList[i])
+            let li = document.createElement('li')
+            li.innerHTML = msgList[i]
+            document.getElementById('ul1').appendChild(li)
+        }
+    })
+</script>
+
+</html>
