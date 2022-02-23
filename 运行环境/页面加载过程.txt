@@ -1,0 +1,37 @@
+
+
+1、从输入URL到渲染出页面的整个过程
+
+2、window.onload和DOMContentLoad的区别
+
+
+1. 加载资源的形式
+	html代码 
+	媒体文件：图片、视频等 
+	JavaScirpt css
+
+    加载资源的过程
+	DNS解析：域名->IP地址
+		1.域名好记
+		2.根据地域解析，访问更快
+	浏览器根据IP地址向服务器发起http请求
+		浏览器发起方 操作系统真正发起 系统服务
+		三次握手
+	服务器处理http请求，返回给浏览器
+		返回数据多样
+
+    渲染页面的过程
+	HTML  => DOM Tree
+	CSS     => CSSOM
+	DOM Tree 和 CSSOM 整合形成Render Tree
+	根据Render Tree渲染页面
+	遇到script暂停渲染 优先加载执行JS代码
+		JS 和 渲染共用一个进程 JS可能会改变Render Tree的结构
+	直至把Render Tree渲染完成
+
+	为什么把css放到head中 ？
+	    css放在head标签中比css放在body标签尾部少了一次构建RenderTree, 一次计算布局和一次渲染网页, 因此性能会更好; 并且css放在body标签尾部时会在网页中短暂出现"裸奔"的HTML, 这不利于用户体验
+
+
+
+

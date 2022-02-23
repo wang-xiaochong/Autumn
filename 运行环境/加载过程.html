@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <!-- <div id="csstest">
+        Hello
+    </div> -->
+    <!-- link属于HTML，当HTML文件被加载时，link引用的文件同时被加载 放在body下面页面会重绘 所以应该把css加载放到最前面-->
+    <!-- <link rel="stylesheet" type="text/css" href="./loading.css"> -->
+
+
+    <!-- 先下载div，之后遇见script标签，暂停下面的下载，引入完成后，改变了div，再继续下面的p下载 所以应该把script标签放到最后 否则页面渲染时间会长(得等待JS)-->
+    <!-- <div id="jstest">defaultdefaultdefaultdefaultdefaultdefault</div>
+    <script src="./loading.js"></script>
+    <p>jstest</p> -->
+
+
+
+    <!-- img加载图片时，并不会阻塞下面的HTML元素下载，等img加载完后，会填到对应位置 -->
+    <p>imatest</p>
+    <img id="img1" src="./loading.jpg">
+    <p>test</p>
+
+
+
+
+</body>
+
+<script>
+    const img = document.getElementById('img1')
+    img.onload = function(){
+        console.log('image onloaded')
+    }
+
+    window.addEventListener('load',function(){
+        // 页面全部加载完后才进行的操作 包括图片、视频等
+        console.log('window.onload')
+    })
+    document.addEventListener('DOMContentLoaded',function(){
+        // DOM 渲染完即可执行 此时图片和视频可能还没加载完
+        console.log('document.onload')
+    })
+</script>
+
+<!-- @import是CSS2.1才出现的概念，如果浏览器版本较低，无法正确导入外部样式 -->
+<!-- @import属于CSS,等页面全部下载完毕才进行加载 出现视觉卡顿 重绘-->
+<!-- <style>
+    @import url('./loading.css');
+</style> -->
+
+</html>
