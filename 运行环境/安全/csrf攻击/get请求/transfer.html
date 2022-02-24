@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transfer</title>
+</head>
+
+<body>
+
+</body>
+<script src="ajax.js"></script>
+<script>
+    // 模拟的假的CSRF攻击 调用后端接口
+
+    // h获取URL中的参数值
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
+    }
+
+    // 模拟发送
+    async function send() {
+        const cookie = localStorage.getItem('user')
+        if (cookie == null) {
+            const span = document.createElement('span')
+            span.innerHTML = '请先登录'
+            document.body.appendChild(span)
+        } else {
+            const from_user = getQueryVariable('from_user')
+            const to_user = getQueryVariable('to_user')
+            const money = getQueryVariable('money')
+            var number = localStorage.getItem('number')
+            let ret = await ajax(`http://localhost:7777/js/transfer?from_user=${from_user}&to_user=${to_user}&money=${money}&number=${number}`)
+            console.log(ret.data)
+        }
+    }
+    send()
+
+
+</script>
+
+</html>
