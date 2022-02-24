@@ -23,6 +23,13 @@
 </body>
 
 
+<!-- 基于DOM的XSS攻击 -->
+<!-- URL对#后面的做了一个转译，能够执行JS操作 -->
+<!-- <script>
+    eval(location.hash.substr(1))
+</script> -->
+
+
 <script>
     let msgList = []
 
@@ -35,7 +42,7 @@
     const button1 = document.getElementById('button1')
     const span1 = document.getElementById('span1')
 
-    span1.innerHTML = '<script>' + 'alert(1)' + '<\/script>'
+    // span1.innerHTML = '<script>' + 'alert(1)' + '<\/script>'
     button1.addEventListener('click', function () {
         msgList.push(input1.value)
         localStorage.setItem('msgList', JSON.stringify(msgList))
