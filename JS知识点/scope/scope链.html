@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scope链</title>
+</head>
+
+<body>
+    <button></button>
+    <button></button>
+    <button></button>
+
+</body>
+<!-- 同原型链差不多，__proto__对应__parent__ 。 在该scope中找不到则会向上根据__parent__依次查找-->
+<!-- 函数定义时不会创建scope，函数执行时会创建一个新的scope，其中这个scope中有__parent__指向该函数定义时的Scope -->
+<script>
+    // var a = 1;
+    // var b = 2;
+    // function doit() {
+    //     var b = 3;
+    //     console.log(a);
+    // }
+    // doit();
+
+    var buttons = document.getElementsByTagName("button");
+    // for (var i = 0, l = buttons.length; i < l; i++) {
+    //     buttons[i].onclick = function () {
+    //         alert(i);
+    //     }
+    // }
+    // function执行后有3个scope，但是这三个scope中都没有i，所以会找到定义该function时所在的scope。这三个function和i是存在于同一个scope中，而这时i为3，所以点击每个按钮都会输出3
+
+    // 要想使的三个按钮点击时弹出对应的位置信息，写法有很多种，但是思路只有一个，就是该函数的内部中有i，不会向上进行查找。其实这就是闭包，每个函数都会创建scope，都会创建闭包
+
+    // 方法1.let声明
+    // for (let i = 0, l = buttons.length; i < l; i++) {
+    //     buttons[i].onclick = function () {
+    //         alert(i);
+    //     }
+    // }
+    // 方法2.函数内部加入i
+    // 写法1：
+    // for (var i = 0, l = buttons.length; i < l; i++) {
+    //     (function (index) {
+    //         buttons[index].onclick = function () {
+    //             alert(index);
+    //         }
+    //     })(i)
+    // }
+    // 写法2：
+    // for (var i = 0, l = buttons.length; i < l; i++) {
+    //     buttons[i].onclick = function (index) {
+    //         return function () {
+    //             alert(index);
+    //         }
+    //     }(i)
+    // }
+
+    var name = "kk"
+    // new 操作符
+    function Person(name, sex, age) {
+        this.name = name;
+        this.sex = sex;
+        var Age = age;
+    }
+
+    // Person执行时创建object.scope，其中有name，sex。不赋值则为undefined
+    // age则是存在于Person内部的scope
+
+    var man = new Person("Bob", "male", "17");
+    console.log(man)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
