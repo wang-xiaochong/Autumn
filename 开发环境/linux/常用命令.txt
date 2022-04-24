@@ -18,6 +18,8 @@ cat <文件名>
 head <文件名>
 tail <文件名>
 grep <"关键字"> <目标文件>
+lsof -i:<端口号>
+netstat -antlp|grep <端口号>
 
 
 
