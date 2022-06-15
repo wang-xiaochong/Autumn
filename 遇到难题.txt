@@ -42,5 +42,31 @@ location / {try_files $uri /index.html;}
 解决：antd提供了configProvider，可以从外界对主题进行更改。原理是它可以动态地更改全局组件地className，更改它的前缀，因此来应用不同的样式文件。要应用的主题是提前已经压缩打包好并都进行了引入，通过更改类名来应用对应的css文件样式。并且工程化，css样式文件单独抽离，更改对应的主题文件可直接更换主题。ui直接设计处css文件进行替换即可，不用更改项目代码。
 对应链接：https://blog.csdn.net/m0_58016522/article/details/122067153
 
+后来采取更改head==>link ，更改引入的样式文件路径，来改变全局的样式布局。
+对应链接：https://v4-pro.ant.design/docs/dynamic-theme-cn
+
+
+
+2.更改node_modules包内内容，且团队开发可用
+
+使用：patch-package
+操作步骤如下：
+安装patch-package：npm i patch-package --save-dev
+修改package.json，新增命令postinstall:
+修改node_modules里面的代码(改成自己需要的)
+执行命令：npx patch-package your-node-module。(your-node-module as @ant-design/pro-layout)
+
+"scripts": {
++"postinstall":"patch-package"
+}
+第一次使用patch-package会在项目根目录生成patches文件夹，里面有修改过的文件diff记录。
+
+当这个包版本更新后，执行命令：git apply --ignore-whitespace patches/qiankun+2.0.11.patch即可。其中qiankun+2.0.11.patch是它生成的文件名。
+
+参考链接：
+https://juejin.cn/post/6844904163558555662
+https://zhuanlan.zhihu.com/p/85574731
+https://blog.csdn.net/weixin_44991965/article/details/106474784
+https://zhuanlan.zhihu.com/p/364318805
 
 
