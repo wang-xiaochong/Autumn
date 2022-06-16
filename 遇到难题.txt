@@ -70,3 +70,9 @@ https://blog.csdn.net/weixin_44991965/article/details/106474784
 https://zhuanlan.zhihu.com/p/364318805
 
 
+3.动态更改整体页面布局（涉及到更改配置后需要重新打包）
+
+解决方法和动态更换主题类似，不同配置在index.html入口处中引入不同的js处理文件
+
+
+
