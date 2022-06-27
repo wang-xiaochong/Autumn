@@ -74,5 +74,10 @@ https://zhuanlan.zhihu.com/p/364318805
 
 解决方法和动态更换主题类似，不同配置在index.html入口处中引入不同的js处理文件
 
+4.NODE环境配置问题
+npm install 安装包一直失败 ：./postinstall等问题
+解决：重新配置node环境，完全卸载干净，并重新安装进行配置。
+参考文档：https://blog.csdn.net/ZHANGYANG_1109/article/details/121229581
+
 
 
