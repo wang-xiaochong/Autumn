@@ -77,3 +77,4 @@ legacy的意思：遗产/（软件或硬件）已过时但因使用范围广而�
 2. [https://github.blog/2021-02-02-npm-7-is-now-generally-available/](https://link.zhihu.com/?target=https%3A//github.blog/2021-02-02-npm-7-is-now-generally-available/)
 3. [https://blog.logrocket.com/whats-new-in-npm-v7/](https://link.zhihu.com/?target=https%3A//blog.logrocket.com/whats-new-in-npm-v7/)
 4. [https://stackoverflow.com/questions/66239691/what-does-npm-install-legacy-peer-deps-do-exactly-when-is-it-recommended-wh](https://link.zhihu.com/?target=https%3A//stackoverflow.com/questions/66239691/what-does-npm-install-legacy-peer-deps-do-exactly-when-is-it-recommended-wh)
+4. https://zhuanlan.zhihu.com/p/506596270
